@@ -51,21 +51,22 @@ userSchema.virtual("password")
 .set(function (password) {
   this.hash_password = bcrypt.hashSync(password.toString(), 10);
 });
-userSchema.methods = {
-  authenticate: function(){
-    return bcrypt.compare(password,this.hash_password)
-  }
-};
 
+// userSchema.methods = {
+//   authenticate: function(){
+//     return bcrypt.compare(password,this.hash_password)
+//   }
+// };
 
-// userSchema.virtual("fullName").get(function () {
-//     return `${this.firstName} ${this.lastName}`;
-//   });
+//fullName
+userSchema.virtual("fullName").get(function () {
+    return `${this.firstName} ${this.lastName}`;
+  });
   
   //authentication
   userSchema.methods = {
     authenticate: async function (password) {
-      return await bcrypt.compare(password, this.hash_password);
+      return await bcrypt.compareSync(password, this.hash_password);
     },
   };
 

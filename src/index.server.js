@@ -1,11 +1,12 @@
 const express = require("express");
-require('dotenv').config();
+require("dotenv").config();
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 //routes
-const userRoutes = require('./routes/user');
+const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin/auth");
 
 // mongodb connection
 // mongoose.connect(
@@ -18,17 +19,15 @@ const userRoutes = require('./routes/user');
 // ).then(()=>{
 //     console.log("Data base connected")
 // })
-mongoose.connect(
-    process.env.MONGO_DB_URL,
-    async(err)=>{
-        if(err) throw err;
-        console.log("Data base connected")
-    }
-)
+mongoose.connect(process.env.MONGO_DB_URL, async (err) => {
+  if (err) throw err;
+  console.log("Data base connected");
+});
 //middleware
 app.use(bodyParser());
 
-app.use('/api',userRoutes);
+app.use("/api", authRoutes);
+app.use("/api", adminRoutes);
 
 //port listening
 app.listen(process.env.PORT, () => {
