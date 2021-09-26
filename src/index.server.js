@@ -19,6 +19,7 @@ const adminRoutes = require("./routes/admin/auth");
 // ).then(()=>{
 //     console.log("Data base connected")
 // })
+
 mongoose.connect(process.env.MONGO_DB_URL, async (err) => {
   if (err) throw err;
   console.log("Data base connected");
