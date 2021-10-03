@@ -10,8 +10,4 @@ const router = express.Router();
 router.post("/admin/signup", validationSignUpRequest, isRequestValidated, sigup)
 router.post("/admin/signin", validationSignInRequest, isRequestValidated, signin)
 
-// router.post("/profile", requireSignin, (req,res)=>{
-//     res.status(200).json({user:"profile"})
-// })
-
 module.exports = router;

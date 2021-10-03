@@ -1,12 +1,13 @@
 const express = require("express");
 require("dotenv").config();
 const app = express();
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 //routes
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin/auth");
+
+const categoryRoutes = require("./routes/category");
 
 // mongodb connection
 // mongoose.connect(
@@ -25,10 +26,11 @@ mongoose.connect(process.env.MONGO_DB_URL, async (err) => {
   console.log("Data base connected");
 });
 //middleware
-app.use(bodyParser());
+app.use(express.json());
 
 app.use("/api", authRoutes);
 app.use("/api", adminRoutes);
+app.use("/api", categoryRoutes);
 
 //port listening
 app.listen(process.env.PORT, () => {

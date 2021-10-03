@@ -1,6 +1,6 @@
 const express = require("express");
 const { sign } = require("jsonwebtoken");
-const { sigup, signin, requireSignin } = require("../controller/auth");
+const { sigup, signin } = require("../controller/auth");
 const {
   validationSignUpRequest,
   isRequestValidated,
@@ -13,8 +13,8 @@ const router = express.Router();
 router.post("/signup", validationSignUpRequest, isRequestValidated, sigup)
 router.post("/signin", validationSignInRequest, isRequestValidated, signin)
 
-router.post("/profile", requireSignin, (req, res) => {
-  res.status(200).json({ user: "profile" });
-})
+// router.post("/profile", requireSignin, (req, res) => {
+//   res.status(200).json({ user: "profile" });
+// })
 
 module.exports = router;
