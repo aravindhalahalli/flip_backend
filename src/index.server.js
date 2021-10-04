@@ -9,6 +9,8 @@ const adminRoutes = require("./routes/admin/auth");
 
 const categoryRoutes = require("./routes/category");
 
+const productRoutes = require("./routes/product");
+
 // mongodb connection
 // mongoose.connect(
 //     `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.1dbb1.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,{
@@ -31,6 +33,7 @@ app.use(express.json());
 app.use("/api", authRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
 
 //port listening
 app.listen(process.env.PORT, () => {
