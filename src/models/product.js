@@ -39,19 +39,19 @@ const ProductSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
         },
-      
+
         review: String,
       },
     ],
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required:true
+      required: true,
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required:true
+      required: true,
     },
     updatedAt: Date,
   },
