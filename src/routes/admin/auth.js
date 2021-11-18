@@ -10,6 +10,6 @@ const router = express.Router();
 //userLogin/Register-Routes
 router.post("/admin/signup", validationSignUpRequest, isRequestValidated, sigup)
 router.post("/admin/signin", validationSignInRequest, isRequestValidated, signin)
-router.post("/admin/signout",requireSignin,signout)
+router.post("/admin/signout", signout)
 
 module.exports = router;

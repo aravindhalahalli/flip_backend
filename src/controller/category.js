@@ -23,22 +23,21 @@ function createCategories(categories, parentId = null) {
 }
 
 exports.addCategory = (req, res) => {
-  let categoryUrl;
 
-  CategoryObj = {
+  const categoryObj = {
     name: req.body.name,
     slug: slugify(req.body.name),
   };
 
   if(req.file){
-     CategoryObj.categoryImage = process.env.API + '/public/' + req.file.filename;
+     categoryObj.categoryImage = process.env.API + '/public/' + req.file.filename;
   }
 
   if (req.body.parentId) {
-    CategoryObj.parentId = req.body.parentId
+    categoryObj.parentId = req.body.parentId;
   }
 
-  const cat = new Category(CategoryObj)
+  const cat = new Category(categoryObj)
 
   cat.save((error, category) => {
     if (error) return res.status(400).json({ error })
